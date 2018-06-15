@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Form.css";
+import axios from "axios";
 
 class Form extends Component {
   constructor(props) {
@@ -7,8 +8,15 @@ class Form extends Component {
     this.state = {
       imageInput: "",
       nameInput: "",
-      priceInput: ""
+      priceInput: 0,
+      products: []
     };
+
+    this.imageHandler = this.imageHandler.bind(this);
+    this.nameHandler = this.nameHandler.bind(this);
+    this.priceHandler = this.priceHandler.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.addHandler = this.addHandler.bind(this);
   }
 
   imageHandler(e) {
@@ -33,7 +41,17 @@ class Form extends Component {
     this.setState({
       imageInput: "",
       nameInput: "",
-      priceInput: ""
+      priceInput: 0
+    });
+  }
+
+  addHandler(name, price, image) {
+    axios.post("/api/product", { name, price, image });
+    this.props.getInventory();
+    this.setState({
+      imageInput: "",
+      nameInput: "",
+      priceInput: 0
     });
   }
 
@@ -46,22 +64,32 @@ class Form extends Component {
           onChange={e => this.imageHandler(e)}
           placeholder="Enter image URL"
         />
-        <p>{this.state.imageInput}</p>
+        {/* <p>{this.state.imageInput}</p> */}
         <input
           value={this.state.nameInput}
           onChange={e => this.nameHandler(e)}
           placeholder="Enter name"
         />
-        <p>{this.state.nameInput}</p>
+        {/* <p>{this.state.nameInput}</p> */}
         <input
           value={this.state.priceInput}
           onChange={e => this.priceHandler(e)}
           placeholder="Enter price"
         />
-        <p>{this.state.priceInput}</p>
+        {/* <p>{this.state.priceInput}</p> */}
         <button onClick={() => this.handleCancel()}>Cancel</button>
         {/* cancel btn should clear all input boxes */}
-        <button>Add to Inventory</button>
+        <button
+          onClick={() =>
+            this.addHandler(
+              this.state.nameInput,
+              this.state.priceInput,
+              this.state.imageInput
+            )
+          }
+        >
+          Add to Inventory
+        </button>
         {/* add btn should add to inventory */}
         {/* should post to database */}
         {/* should also clear input boxes */}

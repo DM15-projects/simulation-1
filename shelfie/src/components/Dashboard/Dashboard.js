@@ -6,9 +6,6 @@ import "./Dashboard.css";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   products: []
-    // };
   }
 
   // componentDidMount() {
@@ -21,13 +18,13 @@ class Dashboard extends Component {
   // }
 
   render() {
+    console.log(this.props.products);
     let productsDisplay = this.props.products.map((product, ind) => {
       return (
-        <div key={product.id}>
+        <div key={product.id} className="productcard">
           <img src={product.image_url} width="60" height="80" />
           <p>{product.name}</p>
           <p>${product.price}</p>
-          {/* <p>{product.image_url}</p> */}
         </div>
       );
     });

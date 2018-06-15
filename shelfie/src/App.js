@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/products").then(response => {
+    axios.get("/api/inventory").then(response => {
       console.log(response);
       this.setState({
         products: response.data
@@ -37,7 +37,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Dashboard products={this.state.products} />
-        <Form />
+        <Form getInventory={this.componentDidMount} />
         {/* {productsDisplay} */}
       </div>
     );

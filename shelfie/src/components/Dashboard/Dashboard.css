@@ -3,3 +3,9 @@
   border: 1px solid black;
   width: 75vw;
 }
+
+.productcard {
+  background-color: #d1483b;
+  width: 45vw;
+  /* height: 25vh; */
+}
