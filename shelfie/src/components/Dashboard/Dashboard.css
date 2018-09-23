@@ -7,5 +7,7 @@
 .productcard {
   background-color: #d1483b;
   width: 45vw;
+  margin: 20px;
+  padding: 20px;
   /* height: 25vh; */
 }

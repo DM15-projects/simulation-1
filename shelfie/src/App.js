@@ -4,6 +4,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
 import axios from "axios";
+import { HashRouter } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
 
 class App extends Component {
   constructor() {
@@ -15,7 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     axios.get("/api/inventory").then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         products: response.data
       });
@@ -34,12 +36,18 @@ class App extends Component {
     //   );
     // });
     return (
-      <div className="App">
-        <Header />
-        <Dashboard products={this.state.products} />
-        <Form getInventory={this.componentDidMount} />
-        {/* {productsDisplay} */}
-      </div>
+      <HashRouter>
+        <div className="App">
+          <Header />
+          <NavBar />
+          <Dashboard
+            products={this.state.products}
+            getInventory={this.componentDidMount}
+          />
+          <Form getInventory={this.componentDidMount} />
+          {/* {productsDisplay} */}
+        </div>
+      </HashRouter>
     );
   }
 }

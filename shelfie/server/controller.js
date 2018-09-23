@@ -8,10 +8,16 @@ module.exports = {
   },
 
   addProduct: (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let db = req.app.get("db");
     let { name, price, image_url } = req.body;
 
     db.create_product([name, price, image_url]).then(() => res.sendStatus(200));
+  },
+
+  deleteProduct: (req, res) => {
+    // console.log(req.body);
+    let db = req.app.get("db");
+    db.delete_product([req.params.id]).then(() => res.sendStatus(200));
   }
 };

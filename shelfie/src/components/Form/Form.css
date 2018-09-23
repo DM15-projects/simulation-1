@@ -1,7 +1,8 @@
 .mainform {
   /* background-color: red; */
   width: 75vw;
-  height: auto;
+  height: 30vh;
   padding: 20px;
   border: 1px solid black;
+  background-color: #44d788;
 }
